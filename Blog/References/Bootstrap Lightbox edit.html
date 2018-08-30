@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <title>Bootstrap Lightbox</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <style class="anchorjs"></style><link rel="stylesheet" href="Bootstrap%20Lightbox_files/bootstrap.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+        <link href="Bootstrap%20Lightbox_files/ekko-lightbox.css" rel="stylesheet">
+
+        <!-- for documentation only -->
+        <style type="text/css">
+            div.row > div > div.row {
+                margin-bottom: 15px;
+            }
+
+            html {
+                background-color: #02709e;
+            }
+            body {
+                background: #fefefe;
+                padding-bottom: 50px;
+            }
+
+            div.top-container {
+                padding-top:100px;
+                background-color: #02709e;
+                color:#ccc;
+            }
+            div.top-container h1 {
+                color:white;
+            }
+            div.top-container a {
+                color:#ccc;
+                border-bottom:1px dotted white;
+            }
+            div.top-container a:hover {
+                color: white;
+                cursor:pointer;
+                border-bottom:1px solid white;
+                text-decoration: none;
+            }
+            div.top-header {
+                margin-bottom:100px;
+            }
+
+            h2 {
+                background-color:#02709e;
+                color:white;
+                display:inline-block;
+                padding:6px;
+                margin-top:100px;
+            }
+
+            h3 {
+                padding-bottom:5px;
+                margin-bottom:10px;
+                border-bottom:1px solid #f2f2f2;
+                margin-top: 50px;
+            }
+
+            h4:not(.modal-title) {
+                margin-top:25px;
+            }
+
+            figure {
+                position: relative;
+            }
+
+            figure figcaption {
+                font-size: 22px;
+                color: #fff;
+                text-decoration: none;
+                bottom: 10px;
+                right: 20px;
+                position: absolute;
+                background-color: #000;
+            }
+			code[data-code], code.block-code {
+                display:block;
+                overflow:scroll;
+                font-size:12px;
+				white-space: pre;
+			}
+
+            table {
+                font-size:12px;
+            }
+            .footer {
+                text-align: center;
+            }
+            .footer span {
+                margin-top:100px;
+                font-size:12px;
+                background-color:#02709e;
+                color:white;
+                display:inline-block;
+                padding:6px;
+            }
+            .footer span a {
+                color:#ccc;
+                border-bottom:1px dotted white;
+            }
+            .footer span a:hover {
+                cursor:pointer;
+                color: white;
+                border-bottom:1px solid white;
+                text-decoration: none;
+            }
+            a.anchorjs-link {
+                color:black;
+            }
+            a.anchorjs-link:hover {
+                color:#02709e;
+                text-decoration: none;
+            }
+        </style>
+    </head>
+    <body style="" class="">
+
+                    <div class="container">
+
+
+                                <h2>Examples</h2>
+                                <ul>
+                                    <li><a href="#single-image">Single Image</a></li>
+                                    <li><a href="#image-gallery">Image Gallery</a></li>
+                                    <li><a href="#limit-size">Limit Image Size</a></li>
+                                    <li><a href="#no-wrapping">Disable wrapping</a></li>
+                                </ul>
+            
+                                <h3 id="single-image"><a class="anchorjs-link " href="#single-image" aria-label="Anchor link for: single image" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; line-height: inherit; position: absolute; margin-left: -1em; padding-right: 0.5em;"></a>Single Image</h3>
+                                <p>Note: uses modal plugin title option via <code>data-title</code>, and the custom footer tag using <code>data-footer</code></p>
+                                <div class="row justify-content-center">
+                                    <div class="col-sm-3" data-code="example-1">
+                                        <a href="https://unsplash.it/1200/768.jpg?image=250" data-toggle="lightbox" data-title="A random title" data-footer="A custom footer text">
+                                            <img src="Bootstrap%20Lightbox_files/600.jpg" class="img-fluid">
+                                        </a>
+                                    </div>
+                                </div>
+                                <code class="html" data-code="example-1" style="">&lt;a href="https://unsplash.it/1200/768.jpg?image=250" data-toggle="lightbox" data-title="A random title" data-footer="A custom footer text"&gt;
+    &lt;img src="https://unsplash.it/600.jpg?image=250" class="img-fluid"&gt;
+&lt;/a&gt;</code>
+            
+                                <h3 id="image-gallery"><a class="anchorjs-link " href="#image-gallery" aria-label="Anchor link for: image gallery" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; line-height: inherit; position: absolute; margin-left: -1em; padding-right: 0.5em;"></a>Image Gallery</h3>
+                                <p>Galleries are created by adding the <code>data-gallery</code> attribute.</p>
+                                <div data-code="example-2">
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-8">
+                                            <div class="row">
+                                                <a href="https://unsplash.it/1200/768.jpg?image=251" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                                                    <img src="Bootstrap%20Lightbox_files/600_003.jpg" class="img-fluid">
+                                                </a>
+                                                <a href="https://unsplash.it/1200/768.jpg?image=252" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                                                    <img src="Bootstrap%20Lightbox_files/600_002.jpg" class="img-fluid">
+                                                </a>
+                                                <a href="https://unsplash.it/1200/768.jpg?image=253" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                                                    <img src="Bootstrap%20Lightbox_files/600_013.jpg" class="img-fluid">
+                                                </a>
+                                            </div>
+                                            <div class="row">
+                                                <a href="https://unsplash.it/1200/768.jpg?image=254" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                                                    <img src="Bootstrap%20Lightbox_files/600_012.jpg" class="img-fluid">
+                                                </a>
+                                                <a href="https://unsplash.it/1200/768.jpg?image=255" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                                                    <img src="Bootstrap%20Lightbox_files/600_011.jpg" class="img-fluid">
+                                                </a>
+                                                <a href="https://unsplash.it/1200/768.jpg?image=256" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                                                    <img src="Bootstrap%20Lightbox_files/600_009.jpg" class="img-fluid">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+								
+								
+								<h3 id="image-gallery"><a class="anchorjs-link " href="#image-gallery" aria-label="Anchor link for: image gallery" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; line-height: inherit; position: absolute; margin-left: -1em; padding-right: 0.5em;"></a>Image Gallery</h3>
+                                <p>This is Anthony's Example</p>
+                                <div data-code="example-2">
+  
+                                                <a href="Bootstrap Lightbox_files/ant1.jpg" data-toggle="lightbox" data-gallery="example-gallery2" data-footer="A custom footer text">
+                                                    <img src="Bootstrap Lightbox_files/ant1.jpg" style="height:197px; width:auto;">
+                                                </a>
+                                                <a href="Bootstrap Lightbox_files/ant2.jpg" data-toggle="lightbox" data-gallery="example-gallery2" data-footer="A custom footer text">
+                                                    <img src="Bootstrap Lightbox_files/ant2.jpg" style="height:197px; width:auto;">
+                                                </a>
+                                                <a href="Bootstrap Lightbox_files/ant3.jpg" data-toggle="lightbox" data-gallery="example-gallery2" data-footer="A custom footer text">
+                                                    <img src="Bootstrap Lightbox_files/ant3.jpg" style="height:197px; width:auto;">
+                                                </a>
+
+
+                                                <a href="Bootstrap Lightbox_files/ant4.jpg" data-toggle="lightbox" data-gallery="example-gallery2"  data-footer="A custom footer text">
+                                                    <img src="Bootstrap Lightbox_files/ant4.jpg" class="img-fluid">
+                                                </a>
+                                                <a href="Bootstrap Lightbox_files/ant5.jpg" data-toggle="lightbox" data-gallery="example-gallery2"  data-footer="A custom footer text">
+                                                    <img src="Bootstrap Lightbox_files/ant5.jpg" class="img-fluid">
+                                                </a>
+                                                <a href="Bootstrap Lightbox_files/ant6.jpg" data-toggle="lightbox" data-gallery="example-gallery2"  data-footer="A custom footer text">
+                                                    <img src="Bootstrap Lightbox_files/ant6.jpg" class="img-fluid">
+                                                </a>
+
+                                </div>
+
+								
+								
+            
+                                <h3 id="limit-size"><a class="anchorjs-link " href="#limit-size" aria-label="Anchor link for: limit size" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; line-height: inherit; position: absolute; margin-left: -1em; padding-right: 0.5em;"></a>Limit Image Size</h3>
+                                <p>Note: uses modal plugin limiting via <code>data-max-width</code> (or <code>data-max-height</code>)</p>
+                                <div class="row justify-content-center">
+                                    <div class="col-sm-3" data-code="example-10">
+                                        <a href="https://unsplash.it/1200/768.jpg?image=250" data-toggle="lightbox" data-max-width="600">
+                                            <img src="Bootstrap%20Lightbox_files/600.jpg" class="img-fluid">
+                                        </a>
+                                    </div>
+                                </div>
+                                <code class="html" data-code="example-10" style="">&lt;a href="https://unsplash.it/1200/768.jpg?image=250" data-toggle="lightbox" data-max-width="600"&gt;
+    &lt;img src="https://unsplash.it/600.jpg?image=250" class="img-fluid"&gt;
+&lt;/a&gt;</code>
+            
+
+
+
+                                <h3 id="no-wrapping"><a class="anchorjs-link " href="#no-wrapping" aria-label="Anchor link for: no wrapping" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; line-height: inherit; position: absolute; margin-left: -1em; padding-right: 0.5em;"></a>Disable wrapping</h3>
+                                <p>To disable wrapping, set `wrapping` to false when creating a gallery.</p>
+                                <div>
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-8">
+                                            <div class="row">
+                                                <a href="https://unsplash.it/1200/768.jpg?image=251" data-toggle="lightbox" data-gallery="example-gallery-11" class="col-sm-4">
+                                                    <img src="Bootstrap%20Lightbox_files/600_003.jpg" class="img-fluid">
+                                                </a>
+                                                <a href="https://unsplash.it/1200/768.jpg?image=252" data-toggle="lightbox" data-gallery="example-gallery-11" class="col-sm-4">
+                                                    <img src="Bootstrap%20Lightbox_files/600_002.jpg" class="img-fluid">
+                                                </a>
+                                                <a href="https://unsplash.it/1200/768.jpg?image=253" data-toggle="lightbox" data-gallery="example-gallery-11" class="col-sm-4">
+                                                    <img src="Bootstrap%20Lightbox_files/600_013.jpg" class="img-fluid">
+                                                </a>
+                                            </div>
+                                            <div class="row">
+                                                <a href="https://unsplash.it/1200/768.jpg?image=254" data-toggle="lightbox" data-gallery="example-gallery-11" class="col-sm-4">
+                                                    <img src="Bootstrap%20Lightbox_files/600_012.jpg" class="img-fluid">
+                                                </a>
+                                                <a href="https://unsplash.it/1200/768.jpg?image=255" data-toggle="lightbox" data-gallery="example-gallery-11" class="col-sm-4">
+                                                    <img src="Bootstrap%20Lightbox_files/600_011.jpg" class="img-fluid">
+                                                </a>
+                                                <a href="https://unsplash.it/1200/768.jpg?image=256" data-toggle="lightbox" data-gallery="example-gallery-11" class="col-sm-4">
+                                                    <img src="Bootstrap%20Lightbox_files/600_009.jpg" class="img-fluid">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <code class="html" data-code="" style="">$(this).ekkoLightbox({ wrapping: false });</code>
+            
+
+                    </div>
+            
+                    <script src="Bootstrap%20Lightbox_files/jquery-3.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+                    <script src="Bootstrap%20Lightbox_files/popper.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+                    <script src="Bootstrap%20Lightbox_files/bootstrap.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+                    <script src="Bootstrap%20Lightbox_files/ekko-lightbox.js"></script>
+            
+                    <!-- for documentation only -->
+                    <script src="Bootstrap%20Lightbox_files/anchor.js"></script>
+                    <script type="text/javascript">
+                        $(document).ready(function ($) {
+                            // delegate calls to data-toggle="lightbox"
+                            $(document).on('click', '[data-toggle="lightbox"]:not([data-gallery="navigateTo"]):not([data-gallery="example-gallery-11"])', function(event) {
+                                event.preventDefault();
+                                return $(this).ekkoLightbox({
+                                    onShown: function() {
+                                        if (window.console) {
+                                            return console.log('Checking our the events huh?');
+                                        }
+                                    },
+                                    onNavigate: function(direction, itemIndex) {
+                                        if (window.console) {
+                                            return console.log('Navigating '+direction+'. Current item: '+itemIndex);
+                                        }
+                                    }
+                                });
+                            });
+            
+                            // disable wrapping
+                            $(document).on('click', '[data-toggle="lightbox"][data-gallery="example-gallery-11"]', function(event) {
+                                event.preventDefault();
+                                return $(this).ekkoLightbox({
+                                    wrapping: false
+                                });
+                            });
+            
+                            //Programmatically call
+                            $('#open-image').click(function (e) {
+                                e.preventDefault();
+                                $(this).ekkoLightbox();
+                            });
+                            $('#open-youtube').click(function (e) {
+                                e.preventDefault();
+                                $(this).ekkoLightbox();
+                            });
+            
+                            // navigateTo
+                            $(document).on('click', '[data-toggle="lightbox"][data-gallery="navigateTo"]', function(event) {
+                                event.preventDefault();
+            
+                                return $(this).ekkoLightbox({
+                                    onShown: function() {
+            
+                                        this.modal().on('click', '.modal-footer a', function(e) {
+            
+                                            e.preventDefault();
+                                            this.navigateTo(2);
+            
+                                        }.bind(this));
+            
+                                    }
+                                });
+                            });
+            
+            
+                            /**
+                             * Documentation specific - ignore this
+                             */
+                            anchors.options.placement = 'left';
+                            anchors.add('h3');
+                            $('code[data-code]').each(function() {
+            
+                                var $code = $(this),
+                                    $pair = $('div[data-code="'+$code.data('code')+'"]');
+            
+                                $code.hide();
+                                var text = $code.text($pair.html()).html().trim().split("\n");
+                                var indentLength = text[text.length - 1].match(/^\s+/)
+                                indentLength = indentLength ? indentLength[0].length : 24;
+                                var indent = '';
+                                for(var i = 0; i < indentLength; i++)
+                                    indent += ' ';
+                                if($code.data('trim') == 'all') {
+                                    for (var i = 0; i < text.length; i++)
+                                        text[i] = text[i].trim();
+                                } else  {
+                                    for (var i = 0; i < text.length; i++)
+                                        text[i] = text[i].replace(indent, '    ').replace('    ', '');
+                                }
+                                text = text.join("\n");
+                                $code.html(text).show();
+            
+                            });
+                        });
+                    </script>
+    
+
+</body></html>
