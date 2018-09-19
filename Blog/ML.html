@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<title>Anthony DS - Machine Learning Reference</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<style class="anchorjs"></style><link rel="stylesheet" href="Attachments/bootstrap.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	<link href="Attachments/ekko-lightbox.css" rel="stylesheet">
+
+	<!-- for documentation only -->
+	<style type="text/css">
+		div.row > div > div.row {
+			margin-bottom: 15px;
+		}
+
+		html {
+			background-color: #02709e;
+		}
+		body {
+			background: #fefefe;
+			padding-bottom: 50px;
+		}
+
+		div.top-container {
+			padding-top:100px;
+			background-color: #02709e;
+			color:#ccc;
+		}
+		div.top-container h1 {
+			color:white;
+		}
+		div.top-container a {
+			color:#ccc;
+			border-bottom:1px dotted white;
+		}
+		div.top-container a:hover {
+			color: white;
+			cursor:pointer;
+			border-bottom:1px solid white;
+			text-decoration: none;
+		}
+		div.top-header {
+			margin-bottom:100px;
+		}
+
+		h2 {
+
+			display:inline-block;
+			margin-top:20px;
+			margin-bottom:20px;
+		}
+
+		h3 {
+			padding-bottom:5px;
+			margin-bottom:10px;
+			border-bottom:1px solid #f2f2f2;
+			margin-top: 50px;
+		}
+
+		h4:not(.modal-title) {
+			margin-top:40px;
+		}
+		
+		img {margin-top: 4px;}
+		
+		figure {
+			position: relative;
+		}
+
+		figure figcaption {
+			font-size: 22px;
+			color: #fff;
+			text-decoration: none;
+			bottom: 10px;
+			right: 20px;
+			position: absolute;
+			background-color: #000;
+		}
+		code[data-code], code.block-code {
+			display:block;
+			overflow:scroll;
+			font-size:12px;
+			white-space: pre;
+		}
+
+		table {
+			font-size:12px;
+		}
+		.footer {
+			text-align: center;
+		}
+		.footer span {
+			margin-top:100px;
+			font-size:12px;
+			background-color:#02709e;
+			color:white;
+			display:inline-block;
+			padding:6px;
+		}
+		.footer span a {
+			color:#ccc;
+			border-bottom:1px dotted white;
+		}
+		.footer span a:hover {
+			cursor:pointer;
+			color: white;
+			border-bottom:1px solid white;
+			text-decoration: none;
+		}
+		a.anchorjs-link {
+			color:black;
+		}
+		a.anchorjs-link:hover {
+			color:#02709e;
+			text-decoration: none;
+		}
+		#floatme {float: left;}
+		
+		.row {
+			display: -ms-flexbox; /* IE 10 */
+			display: flex;
+			-ms-flex-wrap: wrap; /* IE 10 */
+			flex-wrap: wrap;
+			padding: 0 4px;
+		}
+
+		/* Create two equal columns that sits next to each other */
+		.column {
+			-ms-flex: 50%; /* IE 10 */
+			flex: 50%;
+			padding: 0 4px;
+		}
+		.column img {
+			margin-top: 8px;
+			vertical-align: middle;
+		}
+		
+	</style>
+    </head>
+    <body style="" class="">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+			
+			<a name="top" style = "margin-left: 20px;"><h2><b>Machine Learning Reference</b></h2></a>
+			<br>
+			
+		<div class="row General" style="max-width:1000px">
+			<div class="col-12">
+				<a href="Attachments/ML/sklearn_ml_map.png" data-toggle="lightbox" data-gallery="ML" data-footer="scikit-learn algorithm cheat-sheet">
+				<img style = "padding: 0 15pd; float: left" class = 'myImg' src="Attachments/ML/sklearn_ml_map.png" height="300" width=auto, align = 'right', hspace = "20"></a>
+				<p style = "margin-top: 5px;">Most of you have seen this image from <a href ="http://scikit-learn.org/stable/tutorial/machine_learning_map/index.html">scikit-learn.org</a>. This may even be your bible in determining which ML algo to try, or even utilize. My attempt here is to provide summaries, pros and cons, and criteria for some of the popular machine learning algos, in addition to those that are available in the scikit learn library. I'm hoping this will help you with your ML journey. </p>
+				
+				<br>
+				<ul>
+					<a href="#Regression"><h5>Regression</h5></a>
+					<a href="#Classification"><h5>Classification</h5></a>
+				</ul>
+			</div>		
+
+		</div>	
+		<div class="row General">
+			<div class="col-12">
+			<a name="Regression"><h4><b>Regression</b></h4></a>
+				<table class="table table-bordered">
+				  <tr>
+					<th>Algorithm</th>
+					<th>Criteria</th>
+					<th>Overview</th>
+					<th>Pros & Cons</th>
+					<th>Tips</th>
+					<th>Best Application</th>
+				  </tr>
+				  <tr>
+					<td><b>SGD Regressor</b></td>
+					<td>SGD Regressor is well suited for regression problems with a large number of training samples (10k+, preferably 100k+ )</td>
+					<td>
+						<p>Stochastic Gradient Descent (SGD) is a simple yet very efficient approach to discriminative learning of linear classifiers under convex loss functions such as (linear) Support Vector Machines and Logistic Regression. Even though SGD has been around in the machine learning community for a long time, it has received a considerable amount of attention just recently in the context of large-scale learning.</p><p>SGD has been successfully applied to large-scale and sparse machine learning problems often encountered in text classification and natural language processing. Given that the data is sparse, the classifiers in this module easily scale to problems with more than 10^5 training examples and more than 10^5 features.</p>
+					</td>
+					<td>Pros:
+						<ul>
+							<li>Efficiency</li>
+							<li>Ease of implementation (lots of opportunities for code tuning)</li>
+						</ul>
+						Cons:
+						<ul>
+							<li>SGD requires a number of hyperparameters such as the regularization parameter and the number of iterations</li>
+							<li>SGD is sensitive to feature scaling</li>
+						</ul>
+					</td>
+					<td>
+						<ul>
+							<li>Sensitive to feature scaling, highly recommended to scale your data</li>
+							<li>Finding a reasonable regularization term \alpha is best done using GridSearchCV, usually in the range 10.0**-np.arange(1,7)</li>
+							<li>Empirically, SGD converges after observing approx. 10^6 training samples. A reasonable first guess for the number of iterations is n_iter = np.ceil(10**6 / n), where n is the size of the training set.</li>
+							<li>PCA features: often wise to scale the feature values by some constant c such that the average L2 norm of the training data equals one</li>
+							<li>Averaged SGD works best with a larger number of features and a higher eta0</li>
+						</ul>
+					</td>
+					<td>-</td>
+				  </tr>
+				  <tr>
+					<td><b>Ridge Regressor</b></td>
+					<td></td>
+					<td>Ridge regression addresses some of the problems of Ordinary Least Squares by imposing a penalty on the size of coefficients. The ridge coefficients minimize a penalized residual sum of squares. Effectively, Ridge penalize data with outliers, or features with outliers.</td>
+					<td>Pros:
+						<ul>
+							<li>reduce effects of outliers</li>
+						</ul></td>
+					<td></td>
+					<td>If we want to reduce effects of outliers.</td>
+				  </tr>
+				  
+				  <tr>
+					<td><b>Lasso Regressor</b></td>
+					<td></td>
+					<td>Lasso is short for least absolute shrinkage and selector operator. Lasso regression was similar to an ordinary least square regression, where the algorithm was trying to minimize the squared error term. Where the Lasso was different from OLS was the λ term. When λ increased, many of the correlated coefficients would be reduced to zeros. This property was known as feature selection, where Lasso regression only keep features that are uncorrelated and relevant. However, due to feature selection, we may lose information contained in the dataset. Due to Lasso’s simplicity, efficiency, and ability to perform feature selection, Lasso could also be a good benchmark for future regression exercises.</td>
+					<td>Pros:
+						<ul>
+							<li>Better than usual methods of automatic variable selection</li>
+						</ul>
+						Cons:
+						<ul>
+							<li>Garbage in, Garbage out</li>
+							<li>Ignores variables that are insignificant, but might be interesting</li>
+						</ul></td>
+					<td>It is generally used when we have more number of features, because it automatically does feature selection.</td>
+					<td>Use it when we have a lot of features that might be correlated.</td>
+				  </tr>
+				  <tr>
+					<td><b>ElasticNet</b></td>
+					<td></td>
+					<td>ElasticNet is a combination of Ridge and Lasso algorithms. Ridge regression also contained a λ term, where if λ increased, the error term penalties were also magnified, thereby discouraging overfitting. For ElasticNet, we needed to define Alpha and L1_ratio, where Alpha =  λ1 + λ2, and L1_ratio = λ1 / (λ1 + λ2). Note that if L1_ratio = 1, then we have the Lasso algorithm; if L1 = 0, then we have the Ridge algorithm. Therefore, ElasticNet is a combination of give and take between Lasso (feature selection), and Ridge (regularization). Due to ElasticNet’s simplicity, efficiency and ability to perform feature selection and regularization, ElasticNet could also bebe a good benchmark for future regression exercise. </td>
+					<td>Pros:
+						<ul>
+							<li>Can tune both L1 and L2 penalty terms</li>
+							<li>inherit some of Ridge’s stability under rotation</li>
+						</ul>
+					</td>
+					<td>When trying OLS, Lasso or Ridge, whynot include ElasticNet?</td>
+					<td></td>
+				  </tr>
+				  
+				  <tr>
+					<td><b>SVR</b></td>
+					<td></td>
+					<td>A Support Vector Machine (SVM) is a supervised machine learning algorithm that can be employed for both classification and regression purposes. SVMs are more commonly used in classification problems and as such, this is what we will focus on in this post.<br>SVMs are based on the idea of finding a hyperplane that best divides a dataset into classes.</td>
+					<td>Pros:
+						<ul>
+							<li>Effective in high dimensional spaces.</li>
+							<li>Still effective in cases where number of dimensions is greater than the number of samples.</li>
+							<li>Uses a subset of training points in the decision function (called support vectors), so it is also memory efficient.</li>
+							<li>Versatile: different Kernel functions can be specified for the decision function. Common kernels are provided, but it is also possible to specify custom kernels.</li>
+							<li>Accuracy</li>
+							<li>Works well on smaller cleaner datasets</li>
+							<li>It can be more efficient because it uses a subset of training points</li>
+						</ul>
+						Cons:
+						<ul>
+							<li>If the number of features is much greater than the number of samples, avoid over-fitting in choosing Kernel functions and regularization term is crucial.</li>
+							<li>SVMs do not directly provide probability estimates, these are calculated using an expensive five-fold cross-validation (see Scores and probabilities, below).</li>
+							<li>Isn’t suited to larger datasets as the training time with SVMs can be high</li>
+							<li>Less effective on noisier datasets with overlapping classes</li>
+
+						</ul></td>
+					<td>Try both kernel = 'linera' or 'rbf' to get best results</td>
+					<td>SVM is used for text classification tasks such as category assignment, detecting spam and sentiment analysis. It is also commonly used for image recognition challenges, performing particularly well in aspect-based recognition and color-based classification. SVM also plays a vital role in many areas of handwritten digit recognition, such as postal automation services.</td>
+				  </tr>
+				</table> 
+				<a href="#top">back to the top</a>
+				 
+				<a name="Classification"><h4><b>Classification</b></h4></a>
+				<table class="table table-bordered">
+				  <tr>
+					<td><b></b></td>
+					<td></td>
+					<td></td>
+					<td>Pros:
+						<ul>
+							<li></li>
+							<li></li>
+						</ul>
+						Cons:
+						<ul>
+							<li></li>
+							<li></li>
+						</ul></td>
+					<td></td>
+					<td></td>
+				  </tr>
+				  <tr>
+					<td><b></b></td>
+					<td></td>
+					<td></td>
+					<td>Pros:
+						<ul>
+							<li></li>
+							<li></li>
+						</ul>
+						Cons:
+						<ul>
+							<li></li>
+							<li></li>
+						</ul></td>
+					<td></td>
+					<td></td>
+				  </tr>
+				  
+					<td><b>Decision Tree</b></td>
+					<td></td>
+					<td></td>
+					<td>Pros:
+						<ul>
+							<li></li>
+							<li></li>
+						</ul>
+						Cons:
+						<ul>
+							<li></li>
+							<li></li>
+						</ul></td>
+					<td></td>
+					<td></td>
+				  </tr>
+				  <tr>
+					<td><b>KNN (K Nearest Neighbor)</b></td>
+					<td></td>
+					<td></td>
+					<td>Pros:
+						<ul>
+							<li></li>
+							<li></li>
+						</ul>
+						Cons:
+						<ul>
+							<li></li>
+							<li></li>
+						</ul></td>
+					<td></td>
+					<td></td>
+				  </tr>
+				  <tr>
+					<td><b>Random Forest</b></td>
+					<td></td>
+					<td></td>
+					<td>Pros:
+						<ul>
+							<li></li>
+							<li></li>
+						</ul>
+						Cons:
+						<ul>
+							<li></li>
+							<li></li>
+						</ul></td>
+					<td></td>
+					<td></td>
+				  </tr>
+				  <tr>
+					<td><b>Ada (Adaptive) Boost</b></td>
+					<td></td>
+					<td></td>
+					<td>Pros:
+						<ul>
+							<li></li>
+							<li></li>
+						</ul>
+						Cons:
+						<ul>
+							<li></li>
+							<li></li>
+						</ul></td>
+					<td></td>
+					<td></td>
+				  </tr>
+				  <tr>
+					<td><b>Gradient Boost</b></td>
+					<td></td>
+					<td></td>
+					<td>Pros:
+						<ul>
+							<li></li>
+							<li></li>
+						</ul>
+						Cons:
+						<ul>
+							<li></li>
+							<li></li>
+						</ul></td>
+					<td></td>
+					<td></td>
+				  </tr>
+				  
+				  
+				  <tr>
+					<td><b>XG Boost</b></td>
+					<td></td>
+					<td>XGBoost stood for extreme gradient boosting. It was an algorithm based on Gradient Boosting, which combines weak learners into a single strong learner in an iterative fashion. In Gradient Boosting, Gradient descent was use in each iteration to minimize the error function (an additive process). In the case for the Random Forest algorithm, it would generate independent trees with different results, which were aggregated to form the recommendation for the ensemble algorithm. Contrasting Random Forest to Gradient Boosting, instead of having independent trees, trees were added to the previous tree to compliment what the previous tree failed to realize. XGBoost was an algorithm developed to include regularization, which placed emphasis to control for over-fitting. In addition to building a more generalized model, XGBoost also had system optimization and algorithm improvement, which could run more efficiently. As an algorithm that won many kaggle competitions, I expected XGBoost algorithm to perform well. </td>
+					<td>Pros:
+						<ul>
+							<li></li>
+							<li></li>
+						</ul>
+						Cons:
+						<ul>
+							<li></li>
+							<li></li>
+						</ul></td>
+					<td></td>
+					<td></td>
+				  </tr>
+
+				</table>
+				<a href="#top">back to the top</a>
+			</div>
+		</div>
+            
+		<script src="Attachments/jquery-3.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="Attachments/popper.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+		<script src="Attachments/bootstrap.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+		<script src="Attachments/ekko-lightbox.js"></script>
+
+		<!-- for documentation only -->
+		<script src="Attachments/anchor.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function ($) {
+				// delegate calls to data-toggle="lightbox"
+				$(document).on('click', '[data-toggle="lightbox"]:not([data-gallery="navigateTo"]):not([data-gallery="example-gallery-11"])', function(event) {
+					event.preventDefault();
+					return $(this).ekkoLightbox({
+						onShown: function() {
+							if (window.console) {
+								return console.log('Checking our the events huh?');
+							}
+						},
+						onNavigate: function(direction, itemIndex) {
+							if (window.console) {
+								return console.log('Navigating '+direction+'. Current item: '+itemIndex);
+							}
+						}
+					});
+				});
+
+				// disable wrapping
+				$(document).on('click', '[data-toggle="lightbox"][data-gallery="example-gallery-11"]', function(event) {
+					event.preventDefault();
+					return $(this).ekkoLightbox({
+						wrapping: false
+					});
+				});
+
+				//Programmatically call
+				$('#open-image').click(function (e) {
+					e.preventDefault();
+					$(this).ekkoLightbox();
+				});
+				$('#open-youtube').click(function (e) {
+					e.preventDefault();
+					$(this).ekkoLightbox();
+				});
+
+				// navigateTo
+				$(document).on('click', '[data-toggle="lightbox"][data-gallery="navigateTo"]', function(event) {
+					event.preventDefault();
+
+					return $(this).ekkoLightbox({
+						onShown: function() {
+
+							this.modal().on('click', '.modal-footer a', function(e) {
+
+								e.preventDefault();
+								this.navigateTo(2);
+
+							}.bind(this));
+
+						}
+					});
+				});
+
+
+				/**
+				 * Documentation specific - ignore this
+				 */
+				anchors.options.placement = 'left';
+				anchors.add('h3');
+				$('code[data-code]').each(function() {
+
+					var $code = $(this),
+						$pair = $('div[data-code="'+$code.data('code')+'"]');
+
+					$code.hide();
+					var text = $code.text($pair.html()).html().trim().split("\n");
+					var indentLength = text[text.length - 1].match(/^\s+/)
+					indentLength = indentLength ? indentLength[0].length : 24;
+					var indent = '';
+					for(var i = 0; i < indentLength; i++)
+						indent += ' ';
+					if($code.data('trim') == 'all') {
+						for (var i = 0; i < text.length; i++)
+							text[i] = text[i].trim();
+					} else  {
+						for (var i = 0; i < text.length; i++)
+							text[i] = text[i].replace(indent, '    ').replace('    ', '');
+					}
+					text = text.join("\n");
+					$code.html(text).show();
+
+				});
+			});
+	</script>
+    
+
+</body></html>
