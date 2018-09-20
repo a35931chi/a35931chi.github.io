@@ -205,6 +205,7 @@
 					<td>Pros:
 						<ul>
 							<li>reduce effects of outliers</li>
+							<li>no data distribution requirement</li>
 						</ul></td>
 					<td></td>
 					<td>If we want to reduce effects of outliers.</td>
@@ -217,6 +218,7 @@
 					<td>Pros:
 						<ul>
 							<li>Better than usual methods of automatic variable selection</li>
+							<li>no data distribution requirement</li>
 						</ul>
 						Cons:
 						<ul>
@@ -234,6 +236,7 @@
 						<ul>
 							<li>Can tune both L1 and L2 penalty terms</li>
 							<li>inherit some of Ridge’s stability under rotation</li>
+							<li>no data distribution requirement</li>
 						</ul>
 					</td>
 					<td>When trying OLS, Lasso or Ridge, whynot include ElasticNet?</td>
@@ -242,7 +245,7 @@
 				  
 				  <tr>
 					<td><b>SVR</b></td>
-					<td></td>
+					<td>If there's not enough data, we can try SVR</td>
 					<td>A Support Vector Machine (SVM) is a supervised machine learning algorithm that can be employed for both classification and regression purposes. SVMs are more commonly used in classification problems and as such, this is what we will focus on in this post.<br>SVMs are based on the idea of finding a hyperplane that best divides a dataset into classes.</td>
 					<td>Pros:
 						<ul>
@@ -253,6 +256,7 @@
 							<li>Accuracy</li>
 							<li>Works well on smaller cleaner datasets</li>
 							<li>It can be more efficient because it uses a subset of training points</li>
+							<li>no data distribution requirement</li>
 						</ul>
 						Cons:
 						<ul>
@@ -270,95 +274,187 @@
 				 
 				<a name="Classification"><h4><b>Classification</b></h4></a>
 				<table class="table table-bordered">
-				  <tr>
-					<td><b></b></td>
-					<td></td>
-					<td></td>
+				   <tr>
+					<td><b>SGD Regressor</b></td>
+					<td>SGD Regressor is well suited for regression problems with a large number of training samples (10k+, preferably 100k+ )</td>
+					<td>
+						<p>Stochastic Gradient Descent (SGD) is a simple yet very efficient approach to discriminative learning of linear classifiers under convex loss functions such as (linear) Support Vector Machines and Logistic Regression. Even though SGD has been around in the machine learning community for a long time, it has received a considerable amount of attention just recently in the context of large-scale learning.</p><p>SGD has been successfully applied to large-scale and sparse machine learning problems often encountered in text classification and natural language processing. Given that the data is sparse, the classifiers in this module easily scale to problems with more than 10^5 training examples and more than 10^5 features.</p>
+					</td>
 					<td>Pros:
 						<ul>
-							<li></li>
-							<li></li>
+							<li>Efficiency</li>
+							<li>Ease of implementation (lots of opportunities for code tuning)</li>
 						</ul>
 						Cons:
 						<ul>
-							<li></li>
-							<li></li>
-						</ul></td>
-					<td></td>
-					<td></td>
-				  </tr>
-				  <tr>
-					<td><b></b></td>
-					<td></td>
-					<td></td>
-					<td>Pros:
-						<ul>
-							<li></li>
-							<li></li>
+							<li>SGD requires a number of hyperparameters such as the regularization parameter and the number of iterations</li>
+							<li>SGD is sensitive to feature scaling</li>
 						</ul>
-						Cons:
+					</td>
+					<td>
 						<ul>
-							<li></li>
-							<li></li>
-						</ul></td>
-					<td></td>
-					<td></td>
+							<li>Sensitive to feature scaling, highly recommended to scale your data</li>
+							<li>Finding a reasonable regularization term \alpha is best done using GridSearchCV, usually in the range 10.0**-np.arange(1,7)</li>
+							<li>Empirically, SGD converges after observing approx. 10^6 training samples. A reasonable first guess for the number of iterations is n_iter = np.ceil(10**6 / n), where n is the size of the training set.</li>
+							<li>PCA features: often wise to scale the feature values by some constant c such that the average L2 norm of the training data equals one</li>
+							<li>Averaged SGD works best with a larger number of features and a higher eta0</li>
+						</ul>
+					</td>
+					<td>-</td>
 				  </tr>
 				  
-					<td><b>Decision Tree</b></td>
-					<td></td>
-					<td></td>
+				  <tr>
+					<td><b>Kernel Approximation</b></td>
+					<td>If SDG Classifier doesn't work, and we have data of 100k+, we can try out Kernel Approximation.</td>
+					<td>-</td>
+					<td>-</td>
+					<td>-</td>
+					<td>-</td>
+				  </tr>
+				  
+				  <tr>
+					<td><b>SVC</b></td>
+					<td>If there's not enough data, we can try SVC</td>
+					<td>A Support Vector Machine (SVM) is a supervised machine learning algorithm that can be employed for both classification and regression purposes. SVMs are more commonly used in classification problems and as such, this is what we will focus on in this post.<br>SVMs are based on the idea of finding a hyperplane that best divides a dataset into classes.</td>
 					<td>Pros:
 						<ul>
-							<li></li>
-							<li></li>
+							<li>Effective in high dimensional spaces.</li>
+							<li>Still effective in cases where number of dimensions is greater than the number of samples.</li>
+							<li>Uses a subset of training points in the decision function (called support vectors), so it is also memory efficient.</li>
+							<li>Versatile: different Kernel functions can be specified for the decision function. Common kernels are provided, but it is also possible to specify custom kernels.</li>
+							<li>Accuracy</li>
+							<li>Works well on smaller cleaner datasets</li>
+							<li>It can be more efficient because it uses a subset of training points</li>
+							<li>no data distribution requirement</li>
 						</ul>
 						Cons:
 						<ul>
-							<li></li>
-							<li></li>
+							<li>If the number of features is much greater than the number of samples, avoid over-fitting in choosing Kernel functions and regularization term is crucial.</li>
+							<li>SVMs do not directly provide probability estimates, these are calculated using an expensive five-fold cross-validation (see Scores and probabilities, below).</li>
+							<li>Isn’t suited to larger datasets as the training time with SVMs can be high</li>
+							<li>Less effective on noisier datasets with overlapping classes</li>
+
+						</ul></td>
+					<td>Try both kernel = 'linera' or 'rbf' to get best results</td>
+					<td>SVM is used for text classification tasks such as category assignment, detecting spam and sentiment analysis. It is also commonly used for image recognition challenges, performing particularly well in aspect-based recognition and color-based classification. SVM also plays a vital role in many areas of handwritten digit recognition, such as postal automation services.</td>
+				  </tr>
+				  <tr>
+					<td><b>Decision Tree</b></td>
+					<td></td>
+					<td>Decision trees are simple but intuitive models that utilize a top-down approach in which the root node creates binary splits until a certain criteria is met. This binary splitting of nodes provides a predicted value based on the interior nodes leading to the terminal (final) nodes. In a classification context, a decision tree will output a predicted target class for each terminal node produced. This is done by assessing the entropy and information gain at each split. </td>
+					<td>Pros:
+						<ul>
+							<li>Easy to interpret and make for straightforward visualizations.</li>
+							<li>The internal workings are capable of being observed and thus make it possible to reproduce work</li>
+							<li>Can handle both numerical and categorical data.</li>
+							<li>Perform well on large datasets</li>
+							<li>Fast</li>
+							<li>good for few categories variables</li>
+							<li>don't suffer multicollinearity</li>
+							<li>no data distribution requirement</li>
+						</ul>
+						Cons:
+						<ul>
+							<li>Depending on the algo, it doesn't always yield the global optimum</li>
+							<li>Prone to overfitting (Decision trees tend to have high variance when they utilize different training and test sets of the same data)</li>
 						</ul></td>
 					<td></td>
 					<td></td>
 				  </tr>
 				  <tr>
 					<td><b>KNN (K Nearest Neighbor)</b></td>
-					<td></td>
-					<td></td>
+					<td>KNN is a supervised algo. Given some training vectors, KNN identifies the k nearest neighbors of a datapoint, and in turn identifies/votes on the data point's classification. When k = 1, each training vector defineds a region in space, defining a Voronoi partition of the space.</td>
+					<td>Doesn't need a lot of data</td>
 					<td>Pros:
 						<ul>
-							<li></li>
-							<li></li>
+							<li>Simple to implement </li>
+							<li>Flexible to feature / distance choices</li>
+							<li>Naturally handles multi-class cases </li>
+							<li>Can do well in practice with enough representative data </li>
+							
 						</ul>
 						Cons:
 						<ul>
-							<li></li>
-							<li></li>
+							<li>complexity of searching the nearest neighbors for each sample, and storage of data</li>
+							<li>Must know we have a meaningful distance function</li>
 						</ul></td>
 					<td></td>
 					<td></td>
 				  </tr>
 				  <tr>
-					<td><b>Random Forest</b></td>
-					<td></td>
+					<td><b>K-Means</b></td>
+					<td><p>K-means clustering is a type of unsupervised learning, which is used when you have unlabeled data (i.e., data without defined categories or groups). The goal of this algorithm is to find groups in the data, with the number of groups represented by the variable K. The algorithm works iteratively to assign each data point to one of K groups based on the features that are provided. Data points are clustered based on feature similarity. The results of the K-means clustering algorithm are:<br>1. The centroids of the K clusters, which can be used to label new data<br>2. Labels for the training data (each data point is assigned to a single cluster)<br>Rather than defining groups before looking at the data, clustering allows you to find and analyze the groups that have formed organically.<br>Each centroid of a cluster is a collection of feature values which define the resulting groups. Examining the centroid feature weights can be used to qualitatively interpret what kind of group each cluster represents.</p>
+					</td>
 					<td></td>
 					<td>Pros:
 						<ul>
-							<li></li>
-							<li></li>
+							<li>pretty fast</li>
 						</ul>
 						Cons:
 						<ul>
-							<li></li>
-							<li></li>
+							<li>have to know how many groups/classes there are</li>
+							<li>may yield different clustering results on different runs of the algorithm (results may not be repeatable)</li>
 						</ul></td>
 					<td></td>
-					<td></td>
+					<td>Some Business Cases:<br>
+						Behavioral segmentation:
+						<ul>
+							<li>Segment by purchase history</li>
+							<li>Segment by activities on application, website, or platform</li>
+							<li>Define personas based on interests</li>
+							<li>Create profiles based on activity monitoring</li>
+							<li></li>
+						</ul>
+						Inventory categorization:
+						<ul>
+							<li>Group inventory by sales activity</li>
+							<li>Group inventory by manufacturing metrics</li>
+						</ul>
+						Sorting sensor measurements:
+						<ul>
+							<li>Detect activity types in motion sensors</li>
+							<li>Group images</li>
+							<li>Separate audio</li>
+							<li>Identify groups in health monitoring</li>
+						</ul>
+						Detecting bots or anomalies:
+						<ul>
+							<li>Separate valid activity groups from bots</li>
+							<li>Group valid activity to clean up outlier detection</li>
+						</ul>
+					</td>
+				  </tr>
+				  <tr>
+					<td><b>Random Forest</b></td>
+					<td>Exploding number of observations</td>
+					<td>Through a process known as bootstrap aggregating (or bagging), it’s possible to create an ensemble (forest) of trees where multiple training sets are generated with replacement, meaning data instances can be repeated. This approach helps reduce variance by averaging the ensemble's results, creating a majority-votes model. Another important feature of bagging trees is that the resulting model uses the entire feature space when considering node splits. Bagging trees allow the trees to grow without pruning, reducing the tree-depth sizes and resulting in high variance but lower bias, which can help improve predictive power. Random Forests train each tree independently, using a random sample of the data. This randomness helps to make the model more robust than a single decision tree, and less likely to overfit on the training data. The general concept is that you divide your data into several portions, use a relatively weak classifier/regressor to process, and then combine them. Random forest is flexible and can enhance the accuracy/performance of the weak algorithm.</td>
+					<td>Pros:
+						<ul>
+							<li>Generalizes well, less overfitting</li>
+							<li>parallel or distributed computing</li>
+							<li>Almost always have lower classification error and better f-scores than decision trees and SVMs. Easy to explain.</li>
+							<li>Deal really well with uneven data sets that have missing variables</li>
+							<li>Give you a really good idea of which features in your data set are the most important for free</li>
+							<li>Generally train faster than SVMs</li>
+						</ul>
+						Cons:
+						<ul>
+							<li>Can be omputationally Expensive</li>
+						</ul></td>
+					<td>https://www.datascience.com/resources/notebooks/random-forest-intro</td>
+					<td>Random Forest can be used for a plethora of data circumstances including, but not limited to:
+						<ul>
+							<li>Image classification</li>
+							<li>Detecting fraudulent cases in banking systems</li>
+							<li>Recommendation engines</li>
+							<li>Feature selection</li>
+						</ul>
+					</td>
 				  </tr>
 				  <tr>
 					<td><b>Ada (Adaptive) Boost</b></td>
 					<td></td>
-					<td></td>
+					<td>AdaBoost is used with short decision trees. After the first tree is created, the performance of the tree on each training instance is used to weight how much attention the next tree that is created should pay attention to each training instance. Training data that is hard to predict is given more more weight, whereas easy to predict instances are given less weight.<br>Models are created sequentially one after the other, each updating the weights on the training instances that affect the learning performed by the next tree in the sequence.<br>After all the trees are built, predictions are made for new data, and the performance of each tree is weighted by how accurate it was on the training data.<br>Because so much attention is put on correcting mistakes by the algorithm it is important that you have clean data with outliers removed</td>
 					<td>Pros:
 						<ul>
 							<li></li>
@@ -375,7 +471,7 @@
 				  <tr>
 					<td><b>Gradient Boost</b></td>
 					<td></td>
-					<td></td>
+					<td>GBTs build trees one at a time, where each new tree helps to correct errors made by previously trained tree. With each tree added, the model becomes even more expressive. There are typically three parameters - number of trees, depth of trees and learning rate, and the each tree built is generally shallow</td>
 					<td>Pros:
 						<ul>
 							<li></li>
@@ -383,8 +479,9 @@
 						</ul>
 						Cons:
 						<ul>
-							<li></li>
-							<li></li>
+							<li>prone to overfitting</li>
+							<li>GBDTs will usually perform better than RF, but they are harder to get right. More concretely, GBDTs have more hyper-parameters to tune and are also more prone to overfitting. RFs can almost work "out of the box" and that is one reason why they are very popular.</li>
+							<li>GBDT training generally takes longer because of the fact that trees are built sequentially</li>
 						</ul></td>
 					<td></td>
 					<td></td>
@@ -404,6 +501,31 @@
 						<ul>
 							<li></li>
 							<li></li>
+						</ul></td>
+					<td></td>
+					<td></td>
+				  </tr>
+				  <tr>
+					<td><b>Neural Network</b></td>
+					<td></td>
+					<td></td>
+					<td>Pros:
+						<ul>
+							<li>good to model the non-linear data with large number of input features</li>
+							<li>widely used in industry</li>
+							<li>many open source implementations</li>
+							<li>good in image classification, video, audio, text. </li>
+						</ul>
+						Cons:
+						<ul>
+							<li>only for numerical inputs, vectors with constant number of values, and datasets with non-missing data.</li>
+							<li>The classification boundaries are hard to understand intuitively and ANNs are computationally expensive.</li>
+							<li>black box, makes them difficult to work with, it’s like trying interrogate the human unconscious for the reasons behind our conscious actions.</li>
+							<li>difficult to train: the training outcome can be nondeterministic and depend crucially on the choice of initial parameters</li>
+							<li>t makes them difficult to troubleshoot when they don't work as you expect, and when they do work, you will never really feel confident that they will generalize well to data not included in your training set because, fundamentally, you don't understand how your network is solving the problem</li>
+							<li>multi-layer neural networks are usually hard to train, and require tuning lots of parameters</li>
+							<li>Neural networks are not probabilistic, unlike their more statistical or Bayesian counterparts. A neural network might give you a continuous number as its output (e.g. a score) but translating that into a probability is often difficult. Approaches with stronger theoretical foundations usually give you those probabilities directly.</li>
+							<li>not a general-purpose technique for classification. </li>
 						</ul></td>
 					<td></td>
 					<td></td>
